@@ -1,0 +1,2 @@
+C:\Projects\Kitchen-wars-self\Kitchen-wars\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Projects\Kitchen-wars-self\Kitchen-wars\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
