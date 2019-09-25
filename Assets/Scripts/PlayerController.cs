@@ -1,20 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 10f;
     private Rigidbody2D rb;
     public bool isFacingRight = true;
-    public float jumpPower = 2000;
+    public float jumpPower = 6;
     public bool isGrounded = false;
     public Transform groundCheck;
     public float groundRadius = 0.2f;
     public LayerMask whatIsGround;
+    public Text deadEndText;
+    public bool isAlive = true;
+    private BoxCollider2D bc;
+    private CapsuleCollider2D cc;
+    public Button restartButton;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        bc = GetComponent<BoxCollider2D>();
+        cc = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -27,10 +37,12 @@ public class PlayerController : MonoBehaviour
 
         if (moveX > 0 && !isFacingRight)
         {
+            Debug.Log("action");
             Flip();
         }
         else if (moveX < 0 && isFacingRight)
         {
+            Debug.Log("action");
             Flip();
         }
 
@@ -55,5 +67,17 @@ public class PlayerController : MonoBehaviour
         theScale.x *= -1;
 
         transform.localScale = theScale;
+    }
+
+    public void DieScript()
+    {
+        isAlive = false;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.AddForce(Vector2.up * 2000);
+        Destroy(bc);
+        Destroy(cc);
+        restartButton.gameObject.SetActive(true);
+        deadEndText.color = Color.red;
+        deadEndText.text = "You Died";
     }
 }
