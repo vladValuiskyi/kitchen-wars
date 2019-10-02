@@ -11,7 +11,6 @@ public class Trap : MonoBehaviour
     public void Activate()
     {
         isActive = true;
-        Debug.Log(trap.name.ToString());
         trap.GetComponent<Animator>().Play("TrapAnimation");
     }
 

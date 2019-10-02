@@ -61,6 +61,5 @@ public class EnemyController : MonoBehaviour
         rb.AddForce(Vector2.up * 200);
         Destroy(bc);
         Destroy(cc);
-        Debug.Log("enemy killed");
     }
 }

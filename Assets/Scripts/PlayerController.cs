@@ -37,23 +37,23 @@ public class PlayerController : MonoBehaviour
 
         if (moveX > 0 && !isFacingRight)
         {
-            Debug.Log("action");
             Flip();
         }
         else if (moveX < 0 && isFacingRight)
         {
-            Debug.Log("action");
             Flip();
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
         if (!isGrounded)
         {
+            Debug.Log("not_jump");
             return;
         }
 
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
+            Debug.Log("jump");
             rb.AddForce(Vector2.up * jumpPower);
         }
     }
